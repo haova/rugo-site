@@ -4,6 +4,7 @@ description: Rugo definition
 layout: ../../layouts/MainLayout.astro
 ---
 
+_@rugo-vn/service_
 
 ## Name and Variable
 
@@ -11,6 +12,7 @@ layout: ../../layouts/MainLayout.astro
 - Adding underscore as prefix with config/hidden/comment name (Ex: `_name`, `_type`, `_relatedBy`).
 - Using square brackets `[` and `]`, with named/property/param name (Ex: `[id]`, `[name]`).
 - Using kebab-case with slug, file name, or long identify message (Ex: `this-is-a-slug`, `file-name`).
+- Using dot (`.`) between partions of name to separate module and submodule.
 
 ## Broker
 

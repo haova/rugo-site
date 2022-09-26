@@ -4,25 +4,27 @@ description: Service
 layout: ../../layouts/MainLayout.astro
 ---
 
+_@rugo-vn/service_
+
 ## Configuration
 
 You can back to the concept page to see overview about the configuration structure.
 
 _Note: When you named a function, avoid following names: `name`, `settings`, `methods`, `actions`, `hooks`, `start`, `started`, `close`, `closed`, `call`, `all`._
 
-**`name`**
+### `name`
 
 Should camelCase. Required.
 
-**`settings`**
+### `settings`
 
 An object, can be accessed as `this.settings` (inside) or `service.settings` (outside).
 
-**`methods`**
+### `methods`
 
 Functions.
 
-**`actions`**
+### `actions`
 
 Functions.
 
@@ -43,7 +45,7 @@ Functions.
 - `args` is an object which merged `args` (local args), `shared` (shared args) and custom property from hooks.
 - `nextCall` is a function to call next action, you can update the shared arguments in the next action, but peer `nextCall` not change the shared.
 
-**`hooks`**
+### `hooks`
 
 ```js
 {
@@ -54,7 +56,7 @@ Functions.
   },
   
   hooks: {
-    before: {
+    before: { // before run action
       async all(args, nextCall) {
         /* return then break */
       },
@@ -63,12 +65,15 @@ Functions.
 
       yourAction: ['methodName'],
     },
-    after: {
+    after: { // after run action
       async all(res, args, nextCall) {
         /* manipulate res */
 
         return res;
       }
+    },
+    error: { // action error
+      /* ... */
     }
   }
 }
@@ -76,8 +81,9 @@ Functions.
 
 - In hook function, if you return anything except `undefined`, the next hook, action and after hook will be skipped.
 - In after hook, you can manipulate response and return the result.
+- When before + action + after throw error, error hooks will occur.
 
-**`started`**
+### `started`
 
 Execute when `start` function is called.
 
@@ -89,7 +95,7 @@ Execute when `start` function is called.
 }
 ```
 
-**`closed`**
+### `closed`
 
 Execute when `close` function is called.
 
@@ -101,11 +107,9 @@ Execute when `close` function is called.
 }
 ```
 
-
-
 ## Methods
 
-**`call`**
+### `call`
 
 ```js
 await service.call(address, args, shared);
@@ -125,15 +129,16 @@ await nextCall(address, args, shared); // in action chain
 
 After this call, `args`, `shared` and previous shared is merged through order priority into `args` of action function.
 
-**`start`**
+If action call occur error, it throws an array of error which item is instance of `RugoError`.
+
+### `start`
 
 ```js
 await service.start();
 ```
 
-**`close`**
+### `close`
 
 ```js
 await service.close();
 ```
-

@@ -8,3 +8,4 @@ layout: ../../layouts/MainLayout.astro
 - **Rugo Platform** is a Platform as a Service. It is an source-code using for other projects. Includes:
   + **Rugo Opensource** (`rugo-open`): An Opensource version, can deploy an application with public packages.
   + **Rugo Professional** (`rugo-pro`): An Professional version, can deploy multiple applications with pro packages.
+- **`@rugo-vn/service`** Microservice framework, base of the platform.

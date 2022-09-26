@@ -49,15 +49,17 @@ export const SIDEBAR: Sidebar = {
 	en: {
 		'Overview': [
 			{ text: 'Introduction', link: 'en/introduction' },
+			{ text: 'Platform', link: 'en/platform' },
+		],
+		'Service': [
 			{ text: 'Definition', link: 'en/definition' },
 			{ text: 'Concept', link: 'en/concept' },
-		],
-		'API': [
 			{ text: 'Service', link: 'en/service' },
 			{ text: 'Broker', link: 'en/broker' },
 		],
 		'Packages': [
-			
+			{ text: 'Driver', link: 'en/driver' },
+			{ text: 'Model', link: 'en/model' },
 		],
 	},
 };

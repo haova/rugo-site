@@ -4,6 +4,8 @@ description: Broker
 layout: ../../layouts/MainLayout.astro
 ---
 
+_@rugo-vn/service_
+
 ## Configuration
 
 Broker is a service with default named `$broker`.
@@ -39,4 +41,3 @@ Load services from `settings._services`.
 ```js
 await broker.loadServices();
 ```
-
