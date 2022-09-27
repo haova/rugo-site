@@ -26,9 +26,9 @@ There is many drivers which provide handler to specific system:
 
 Ex: `service.settings.driver.mongo`.
 
-- `mongo` should be a connection uri.
-- `mem` should be a directory path. (no validation)
-- `fs` should be a directory path. (no validation)
+- `mongo` should be a connection uri. (full validation)
+- `mem` should be a directory path. (simple validation)
+- `fs` should be a directory path. (simple validation)
 
 ## Schema
 
@@ -37,7 +37,7 @@ Service can use schema for validation. Following [JSON Schema](https://json-sche
 - `_name` specific collection's name (`mongo`), stored file (`mem`) or sub-directory to storing file (`fs`).
 - `_index` (type: `['string']`) specify index field (`mongo` only).
 - `_search` (type: `['string']`) specify full-text search field (`mongo` only).
-- `_unique` (type: `['string']`) specify unique field (`mongo` only).
+- `_unique` (type: `['string']`) specify unique field (`mongo` and `mem`).
 
 ```js
 {
@@ -48,7 +48,37 @@ Service can use schema for validation. Following [JSON Schema](https://json-sche
 }
 ```
 
-_Note: All system fields (with underscore prefix) will be removed when passed to deeper step._
+_Note:_
+
+- All system fields (with underscore prefix) will be removed when passed to deeper step.
+- `fs` driver should have `_name` only.
+
+**`fs` driver doc format**
+
+```js
+{
+  name: /* file/dir name */,
+  mime: /* mine of file or 'inode/directory' */,
+  parent: /* parent directory id */,
+  size: /* file size or 0 if directory */,
+  updatedAt: /* mtime */
+}
+```
+
+## FsId
+
+This is a special encoded identity for `fs` driver to determine a file or a directory.
+
+```js
+id = FsId('<your_encoded_id>'); /* returned FsId object */
+
+/* from path */
+
+id = FsId.fromPath('<your_origin_path>'); /* path that excluded root */
+
+/* to path */
+filePath = id.toPath();
+```
 
 ## Actions
 
@@ -66,6 +96,10 @@ Arguments:
 Return: 
 
 - `[doc]` array of doc.
+
+_Notes:_
+
+- `sort` in `fs` driver sorts in entire directory only (same parent).
 
 ### `count`
 
@@ -87,6 +121,11 @@ Return:
 
 - `doc` created doc.
 
+_Notes:_
+
+- In `fs` driver, you can create a doc with `name` and `parent` property only.
+
+
 ### `update`
 
 Arguments:
@@ -99,6 +138,10 @@ Arguments:
 Return: 
 
 - `number` amount of doc updated.
+
+_Notes:_
+
+- In `fs` driver, you can update a doc with `name` and `parent` property only.
 
 ### `remove`
 

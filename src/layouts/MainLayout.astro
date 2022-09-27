@@ -25,7 +25,7 @@ const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 		<HeadCommon />
 		<HeadSEO frontmatter={frontmatter} canonicalUrl={canonicalURL} />
 		<title>
-			{frontmatter.title ? `${frontmatter.title} 🚀 ${CONFIG.SITE.title}` : CONFIG.SITE.title}
+			{frontmatter.title ? `${frontmatter.title} - ${CONFIG.SITE.title}` : CONFIG.SITE.title}
 		</title>
 		<style>
 			body {
