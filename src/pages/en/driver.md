@@ -95,7 +95,7 @@ Arguments:
 
 Return: 
 
-- `[doc]` array of doc.
+- `{[doc]}` array of doc.
 
 _Notes:_
 
@@ -109,7 +109,7 @@ Arguments:
 
 Return: 
 
-- `number` amount of doc filtered by query.
+- `{number}` amount of doc filtered by query.
 
 ### `create`
 
@@ -119,7 +119,7 @@ Arguments:
 
 Return: 
 
-- `doc` created doc.
+- `{doc}` created doc.
 
 _Notes:_
 
@@ -137,11 +137,11 @@ Arguments:
 
 Return: 
 
-- `number` amount of doc updated.
+- `{number}` amount of doc updated.
 
 _Notes:_
 
-- In `fs` driver, you can update a doc with `name` and `parent` property only.
+- In `fs` driver, you can update a doc (only one doc specified by `_id` property) with `name` and `parent` property with `set` method only. 
 
 ### `remove`
 
@@ -151,4 +151,8 @@ Arguments:
 
 Return: 
 
-- `number` amount of doc removed.
+- `{number}` amount of doc removed.
+
+_Notes:_
+
+- In `fs` driver, you can remove a doc (only one doc specified by `_id` property).

@@ -50,6 +50,7 @@ export const SIDEBAR: Sidebar = {
 		'Overview': [
 			{ text: 'Introduction', link: 'en/introduction' },
 			{ text: 'Platform', link: 'en/platform' },
+			{ text: 'Tracking', link: 'en/tracking' },
 		],
 		'Service': [
 			{ text: 'Definition', link: 'en/definition' },
