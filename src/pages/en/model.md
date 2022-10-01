@@ -8,6 +8,8 @@ _@rugo-vn/model_
 
 ## Concept
 
+This module is a service created by `@rugo-vn/service`.
+
 A data connection layer for driver service:
 
 - Select driver in schema.

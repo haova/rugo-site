@@ -26,7 +26,7 @@ The `settings` will be shared with other services in broker. But it have some sy
 
 Broker contains methods as a normal service, but it also have:
 
-**`createService`**
+### `createService`
 
 Create and add a service to the broker from the configuration.
 
@@ -34,10 +34,25 @@ Create and add a service to the broker from the configuration.
 const service = broker.createService(serviceConfig);
 ```
 
-**`loadServices`**
+### `loadServices`
 
 Load services from `settings._services`.
 
 ```js
 await broker.loadServices();
+```
+
+## Actions
+
+### `services`
+
+List all services registered in broker.
+
+Return:
+
+```js
+[
+  { name: /* name of service */ },
+  /* and more */
+]
 ```

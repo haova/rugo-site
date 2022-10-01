@@ -61,6 +61,9 @@ export const SIDEBAR: Sidebar = {
 		'Packages': [
 			{ text: 'Driver', link: 'en/driver' },
 			{ text: 'Model', link: 'en/model' },
+			{ text: 'Server', link: 'en/server' },
+			{ text: 'Auth', link: 'en/auth' },
+			{ text: 'Api', link: 'en/api' },
 		],
 	},
 };

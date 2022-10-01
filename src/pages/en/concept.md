@@ -118,9 +118,9 @@ Each service using their errors with share error handle in `@rugo-vn/service`.
 Example:
 
 ```js
-import { RugoError } from '@rugo-vn/service';
+import { RugoException } from '@rugo-vn/service';
 
-class Forbidden extends RugoError {
+class Forbidden extends RugoException {
   constructor(message, code){
     super(message);
     this.status = '304';

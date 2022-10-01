@@ -129,7 +129,7 @@ await nextCall(address, args, shared); // in action chain
 
 After this call, `args`, `shared` and previous shared is merged through order priority into `args` of action function.
 
-If action call occur error, it throws an array of error which item is instance of `RugoError`.
+If action call occur error, it throws an array of error which item is instance of `RugoException`.
 
 ### `start`
 

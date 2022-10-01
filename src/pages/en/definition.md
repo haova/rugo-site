@@ -9,7 +9,7 @@ _@rugo-vn/service_
 ## Name and Variable
 
 - Using camelCase with common name (Ex: `model`, `createdAt`, `findAndReplace`).
-- Adding underscore as prefix with config/hidden/comment name (Ex: `_name`, `_type`, `_relatedBy`).
+- Adding underscore as prefix with system/config/hidden/comment/functional name (Ex: `_name`, `_type`, `_relatedBy`, `_default`, `_id`).
 - Using square brackets `[` and `]`, with named/property/param name (Ex: `[id]`, `[name]`).
 - Using kebab-case with slug, file name, or long identify message (Ex: `this-is-a-slug`, `file-name`).
 - Using dot (`.`) between partions of name to separate module and submodule.
