@@ -131,3 +131,58 @@ class Forbidden extends RugoException {
 
 throw new Forbidden('You do not have permission', '0001');
 ```
+
+## File Handle
+
+Request and response between services are a JSON format, not binary. So we must have a new way to handle binary data (file data).
+
+The Rugo Service supports two methods as same as `call` are `put` and `get` methods.
+
+- `put` send binary data to other service and return success message.
+- `get` send request to other service and receive binary data.
+
+These methods different from `call` that it's not share arguments.
+
+_In client service_
+
+```js
+await this.put('Service Name', 'Data Identity', /* buffer/stream/local path/text data */);
+/* response:
+- { data } if success
+- { errors } if failed
+*/
+```
+
+```js
+await this.get('Service Name', 'Data Identity', 'Your Hash');
+/* response:
+- { data } local path to tmp file downloaded, if success, or true if your hash match with they in the server
+- { errors } if failed
+```
+
+_In server service_
+
+```js
+{
+  hooks: {
+    async put(serviceName, tmpPath) { // local path to tmp file uploaded
+      return /* success data */;
+    },
+
+    async get(serviceName, identity, hashed) { // any 
+      return /* buffer/stream/local path/text data  or true when hashed matched */
+    }
+  }
+}
+```
+
+You can chain your `put`/`get` by set hooks value is the name of destination service.
+
+```js
+{
+  hooks: {
+    put: 'driver',
+    get: 'driver',
+  }
+}
+```
