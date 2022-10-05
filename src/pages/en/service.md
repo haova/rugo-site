@@ -74,7 +74,16 @@ Functions.
     },
     error: { // action error
       /* ... */
-    }
+    },
+    // file: {
+    //   async put(serviceName, identity, tmpPath) { // local path to tmp file uploaded
+    //     return /* success data */;
+    //   },
+
+    //   async get(serviceName, identity, hashed) { // any 
+    //     return /* buffer/stream/local path/text data  or true when hashed matched */
+    //   }
+    // }
   }
 }
 ```
@@ -130,6 +139,43 @@ await nextCall(address, args, shared); // in action chain
 After this call, `args`, `shared` and previous shared is merged through order priority into `args` of action function.
 
 If action call occur error, it throws an array of error which item is instance of `RugoException`.
+
+### `put`
+
+Upload file to the specific service.
+
+```js
+await service.put(address, args);
+```
+
+`args` must contains:
+
+- `data`: Data of file (maybe buffer, stream, local path or text data). Local path sould be absolute path.
+- or you can pass any args like `call`.
+
+When `put`, file will upload to the destination service's location. Then the action will be called with some args:
+
+- `path`: Tmp path of the file uploaded.
+
+The action should return something, it's a return of `put` function.
+
+### `get`
+
+Get a file from specific service.
+
+```js
+await service.get(address, args);
+```
+
+`args` must contains:
+
+- you can pass any args like `call`.
+
+When `get`, the destination service will be execute.
+
+You can return `true` if nothing but still success or return data of file (maybe buffer, stream, local path or text data).
+
+Then, file will be return to current service. The return of `get` is tmp path of file downloaded.
 
 ### `start`
 

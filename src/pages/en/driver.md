@@ -65,21 +65,6 @@ _Note:_
 }
 ```
 
-## FsId
-
-This is a special encoded identity for `fs` driver to determine a file or a directory.
-
-```js
-id = FsId('<your_encoded_id>'); /* returned FsId object */
-
-/* from path */
-
-id = FsId.fromPath('<your_origin_path>'); /* path that excluded root */
-
-/* to path */
-filePath = id.toPath();
-```
-
 ## Actions
 
 These services shared same action structure and have `schema` argument as required, the returned below will be wrapped by response format in the next section.
@@ -156,3 +141,40 @@ Return:
 _Notes:_
 
 - In `fs` driver, you can remove a doc (only one doc specified by `_id` property).
+
+## Fs Driver
+
+### FsId
+
+This is a special encoded identity for `fs` driver to determine a file or a directory.
+
+```js
+id = FsId('<your_encoded_id>'); /* returned FsId object */
+
+/* from path */
+
+id = FsId.fromPath('<your_origin_path>'); /* path that excluded root */
+
+/* to path */
+filePath = id.toPath();
+```
+
+### Upload/Download
+
+For `@rugo-vn/service` `v2.0.1`, you can put and get file between two service. Therefore, `fs` driver also put and get file, called `upload` and `download` action.
+
+```js
+/* upload */
+await this.put(`driver.fs.upload`, {
+  id: /* FsId of file */,
+  collection: /* Colletion name to store the file */,
+  data: /* data of file */,
+});
+
+/* and download */
+await this.get(`driver.fs.download`, {
+  id: /* FsId of file */,
+  collection: /* Colletion name to store the file */,
+  hash: /* hash of file, if hash matched, return true (for caching) */, 
+});
+```
